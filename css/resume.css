@@ -1,0 +1,761 @@
+/* ==========================================================================
+   RESUME BUILDER - MULTI-STEP BUILDER & LIVE TEMPLATES STYLESHEET
+   Step Wizard, Dynamic Repeaters, Preview Toolbar, 10 Resume Templates & Print
+   ========================================================================== */
+
+/* Split Screen Builder Layout */
+.builder-layout {
+  display: flex;
+  min-height: calc(100vh - 72px);
+  background-color: var(--bg-body);
+}
+
+.builder-editor-pane {
+  width: 52%;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+}
+
+.builder-preview-pane {
+  width: 48%;
+  background-color: var(--bg-surface-alt);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow: hidden;
+}
+
+/* Step Wizard Progress Bar */
+.wizard-progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 1rem;
+}
+.wizard-progress-bar::-webkit-scrollbar {
+  height: 4px;
+}
+.wizard-step-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  min-width: 60px;
+  flex: 1;
+}
+.step-node-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-surface-alt);
+  border: 2px solid var(--border-color);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+.step-node-label {
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+.wizard-step-node.active .step-node-bubble {
+  background: var(--primary-gradient);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+.wizard-step-node.active .step-node-label {
+  color: var(--primary);
+  font-weight: 700;
+}
+.wizard-step-node.completed .step-node-bubble {
+  background: var(--success);
+  border-color: var(--success);
+  color: #ffffff;
+}
+.wizard-step-node.completed .step-node-label {
+  color: var(--text-main);
+}
+
+/* Step Form Container */
+.step-content-section {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+.step-content-section.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+.step-save-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--success);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+/* Photo Upload Box */
+.photo-upload-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-surface-alt);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+}
+.photo-preview-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-color);
+}
+.photo-upload-info h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.photo-upload-info p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Dynamic Repeater Cards (Education, Experience, Projects) */
+.repeater-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.repeater-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--transition-fast);
+}
+.repeater-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.repeater-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.repeater-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.repeater-card-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color var(--transition-fast);
+}
+.repeater-card-remove:hover {
+  color: var(--danger);
+}
+
+/* Form Grid Helpers */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Character Counter */
+.char-counter {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 0.35rem;
+}
+
+/* Step Wizard Action Buttons */
+.wizard-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Preview Toolbar (Right Pane Header) */
+.preview-toolbar {
+  padding: 0.85rem 1.5rem;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  z-index: 10;
+}
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.toolbar-select {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.color-picker-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--border-color);
+  transition: transform var(--transition-fast);
+}
+.color-dot:hover, .color-dot.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+/* Preview Zoom Canvas */
+.preview-viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-body);
+}
+
+/* ==========================================================================
+   A4 RESUME PAPER CONTAINER
+   Standard A4 Dimensions: 210mm x 297mm (scaled for display: 794px x 1123px)
+   ========================================================================== */
+.resume-paper {
+  width: 794px;
+  min-height: 1123px;
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  position: relative;
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+  line-height: 1.5;
+  font-size: 13.5px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   10 RESUME TEMPLATES STYLES
+   ========================================================================== */
+
+/* --- 1. MODERN TEMPLATE (2-Column with Accent Sidebar) --- */
+.template-modern {
+  display: flex;
+  min-height: 1123px;
+  font-family: 'Inter', sans-serif;
+}
+.template-modern .modern-sidebar {
+  width: 32%;
+  background: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.template-modern .modern-main {
+  width: 68%;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.template-modern .modern-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  border: 3px solid var(--resume-accent, #4f46e5);
+}
+.template-modern .modern-header h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+}
+.template-modern .modern-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--resume-accent, #4f46e5);
+  margin-top: 4px;
+}
+.template-modern .sidebar-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--resume-accent, #4f46e5);
+  border-bottom: 2px solid var(--resume-accent, #4f46e5);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+.template-modern .section-heading {
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--resume-accent, #4f46e5);
+  border-bottom: 2px solid var(--resume-accent, #4f46e5);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+}
+
+/* --- 2. ATS FRIENDLY TEMPLATE (High Parsing, 1-Column) --- */
+.template-ats {
+  padding: 44px 48px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+.template-ats .ats-header {
+  text-align: center;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+.template-ats h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.template-ats .ats-contact {
+  font-size: 12.5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.template-ats .ats-section {
+  margin-bottom: 18px;
+}
+.template-ats .ats-section-title {
+  font-size: 13.5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #111827;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* --- 3. CREATIVE TEMPLATE (Bold Header Banner, Colored Tags) --- */
+.template-creative {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.template-creative .creative-hero {
+  background: var(--resume-accent, #4f46e5);
+  color: #ffffff;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.template-creative .creative-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  border: 3px solid #ffffff;
+  object-fit: cover;
+}
+.template-creative .creative-hero h1 {
+  font-size: 28px;
+  font-weight: 800;
+}
+.template-creative .creative-hero h2 {
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+.template-creative .creative-body {
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+/* --- 4. EXECUTIVE TEMPLATE (Formal, Serif, Leadership) --- */
+.template-executive {
+  padding: 48px 52px;
+  font-family: 'Merriweather', Georgia, serif;
+  color: #1e293b;
+}
+.template-executive .exec-header {
+  border-bottom: 3px double #334155;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.template-executive h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.template-executive .exec-title {
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--resume-accent, #0f766e);
+  margin-top: 4px;
+}
+.template-executive .section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--resume-accent, #0f766e);
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 4px;
+  margin: 20px 0 12px;
+}
+
+/* --- 5. STUDENT TEMPLATE (Education First, Academic & Projects) --- */
+.template-student {
+  padding: 40px 44px;
+  font-family: 'Inter', sans-serif;
+}
+.template-student .student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--resume-accent, #2563eb);
+  margin-bottom: 20px;
+}
+.template-student h1 {
+  font-size: 25px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.template-student .student-section-title {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--resume-accent, #2563eb);
+  margin: 16px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- 6. MINIMAL TEMPLATE (Scandinavian Clean Whitespace) --- */
+.template-minimal {
+  padding: 48px;
+  font-family: 'Inter', sans-serif;
+  color: #334155;
+}
+.template-minimal h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+.template-minimal .minimal-title {
+  font-size: 13.5px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+.template-minimal .minimal-section {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+.template-minimal .minimal-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+/* --- 7. ELEGANT TEMPLATE (Navy/Gold accents, Timeline markers) --- */
+.template-elegant {
+  padding: 44px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.template-elegant .elegant-header {
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+.template-elegant h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1e1b4b;
+}
+.template-elegant .elegant-accent-line {
+  width: 60px;
+  height: 3px;
+  background: var(--resume-accent, #d97706);
+  margin: 10px auto;
+}
+.template-elegant .elegant-grid {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  gap: 28px;
+}
+
+/* --- 8. PROFESSIONAL TEMPLATE (Standard 2-Column Corporate) --- */
+.template-professional {
+  padding: 40px 44px;
+  font-family: 'Inter', sans-serif;
+}
+.template-professional .prof-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--resume-accent, #0284c7);
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+}
+.template-professional h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.template-professional .prof-columns {
+  display: grid;
+  grid-template-columns: 68% 32%;
+  gap: 24px;
+}
+
+/* --- 9. CORPORATE TEMPLATE (Boxed Structured Cards) --- */
+.template-corporate {
+  padding: 38px 42px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.template-corporate .corp-box {
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--resume-accent, #4338ca);
+  background: #f8fafc;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  border-radius: 4px;
+}
+.template-corporate h1 {
+  font-size: 25px;
+  font-weight: 800;
+  color: #1e1b4b;
+}
+
+/* --- 10. FRESHER TEMPLATE (Skills & Projects First) --- */
+.template-fresher {
+  padding: 40px 44px;
+  font-family: 'Inter', sans-serif;
+}
+.template-fresher .fresher-banner {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--resume-accent, #059669);
+}
+.template-fresher h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Shared Resume Elements */
+.resume-entry {
+  margin-bottom: 14px;
+}
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13.5px;
+}
+.resume-entry-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+.resume-entry-subtitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #475569;
+}
+.resume-entry-date {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+.resume-entry-desc {
+  font-size: 12.5px;
+  color: #334155;
+  margin-top: 4px;
+  white-space: pre-line;
+  line-height: 1.45;
+}
+.resume-skill-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #334155;
+  margin: 2px 3px 2px 0;
+  border: 1px solid #e2e8f0;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #475569;
+  margin-bottom: 4px;
+}
+.contact-item i {
+  color: var(--resume-accent, #4f46e5);
+  width: 14px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   PRINT MEDIA STYLES
+   Optimized for 1 or 2 page A4 printing with zero browser margins/clutter
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide all app chrome */
+  .site-header,
+  .app-sidebar,
+  .app-topbar,
+  .builder-editor-pane,
+  .preview-toolbar,
+  .sidebar-overlay,
+  .toast-container,
+  .modal-backdrop,
+  .site-footer,
+  .btn,
+  #mobileNavToggleBar {
+    display: none !important;
+  }
+
+  .builder-layout,
+  .app-layout,
+  .app-main,
+  .builder-preview-pane,
+  .preview-viewport {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  .resume-paper {
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 20mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Free Account – Resume Builder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.12) 0%, rgba(248, 250, 252, 1) 70%);
+    }
+    [data-theme="dark"] .auth-page {
+      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.18) 0%, rgba(11, 15, 25, 1) 70%);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 460px;
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .auth-header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-top: 1rem;
+    }
+    .auth-header p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+    }
+    .auth-footer {
+      text-align: center;
+      margin-top: 1.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .auth-nav-top {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .password-strength-container {
+      margin-top: 0.4rem;
+    }
+    .password-strength-track {
+      height: 4px;
+      width: 100%;
+      background: var(--bg-surface-alt);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    .password-strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    .password-strength-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <!-- Top Navigation Controls -->
+  <div class="auth-nav-top">
+    <a href="index.html" class="btn btn-outline btn-sm">
+      <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+      <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+    </button>
+  </div>
+
+  <div class="glass-card auth-card">
+    <div class="auth-header">
+      <a href="index.html" class="brand-logo justify-center">
+        <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+      <h1>Create Your Account</h1>
+      <p>Start creating interview-winning resumes for free.</p>
+    </div>
+
+    <!-- Registration Form -->
+    <form id="registerForm" novalidate>
+      <div class="form-group">
+        <label for="regName" class="form-label">Full Name</label>
+        <div class="input-with-icon">
+          <i class="fa-regular fa-user input-icon"></i>
+          <input type="text" id="regName" class="form-control" placeholder="e.g. Alex Morgan" required autocomplete="name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail" class="form-label">Email Address</label>
+        <div class="input-with-icon">
+          <i class="fa-regular fa-envelope input-icon"></i>
+          <input type="email" id="regEmail" class="form-control" placeholder="name@example.com" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword" class="form-label">Password</label>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" id="regPassword" class="form-control" placeholder="Minimum 8 characters" required autocomplete="new-password">
+          <button type="button" class="password-toggle-btn" data-target="regPassword" aria-label="Toggle Password Visibility">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <!-- Password Strength Meter -->
+        <div class="password-strength-container">
+          <div class="password-strength-track">
+            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+          </div>
+          <div class="password-strength-meta">
+            <span class="text-muted">Security level</span>
+            <span id="passwordStrengthText" style="font-weight: 600;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regConfirmPassword" class="form-label">Confirm Password</label>
+        <div class="input-with-icon">
+          <i class="fa-solid fa-shield-halved input-icon"></i>
+          <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required autocomplete="new-password">
+          <button type="button" class="password-toggle-btn" data-target="regConfirmPassword" aria-label="Toggle Password Visibility">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+        <label class="custom-checkbox">
+          <input type="checkbox" id="acceptTerms" required checked>
+          <span>I agree to the <a href="#" class="text-primary">Terms of Service</a> & <a href="#" class="text-primary">Privacy Policy</a></span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem;">
+        <i class="fa-solid fa-user-plus"></i> Create Free Account
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html" class="text-primary" style="font-weight: 600;">Sign in here</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

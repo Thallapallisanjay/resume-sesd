@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Templates – 10 Professional Designs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .templates-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-pills-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-pill-btn {
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .filter-pill-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .filter-pill-btn.active {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+  </style>
+</head>
+<body class="app-layout">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-heading">Main Menu</li>
+        <li>
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-resumes.html" class="sidebar-link">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Resumes</span>
+          </a>
+        </li>
+        <li>
+          <a href="resume-builder.html" class="sidebar-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="templates.html" class="sidebar-link active">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Templates</span>
+            <span class="sidebar-badge">10</span>
+          </a>
+        </li>
+
+        <li class="sidebar-nav-heading" style="margin-top: 1rem;">Preferences</li>
+        <li>
+          <a href="settings.html" class="sidebar-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-link theme-toggle-btn" id="sidebarThemeToggle">
+            <i class="fa-solid fa-moon theme-toggle-icon"></i>
+            <span class="theme-toggle-text">Dark Mode</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sidebar User Footer -->
+    <div class="sidebar-footer">
+      <div class="user-card-mini">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar-mini current-user-avatar">
+        <div class="user-info-mini">
+          <div class="user-name-mini current-user-name">Alex Morgan</div>
+          <div class="user-email-mini current-user-email">alex.morgan@example.com</div>
+        </div>
+        <button class="btn btn-ghost btn-icon logout-btn" title="Sign Out" style="color: var(--danger);">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="app-main">
+    <!-- Topbar Header -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h2 class="topbar-page-title">Resume Templates (10 Styles)</h2>
+      </div>
+
+      <div class="topbar-right">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+        <a href="resume-builder.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Open Builder
+        </a>
+      </div>
+    </header>
+
+    <!-- Templates Content -->
+    <div class="app-content">
+
+      <!-- Header Intro -->
+      <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Pick Your Resume Template</h1>
+        <p style="color: var(--text-secondary); max-width: 650px;">
+          Choose from 10 professionally formatted templates. All designs are optimized for recruiters, ATS scanning software, and high-resolution PDF download.
+        </p>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="templates-filter-bar">
+        <div class="filter-pills-list">
+          <button class="filter-pill-btn active" data-category="all">All (10)</button>
+          <button class="filter-pill-btn" data-category="ats">ATS Optimized</button>
+          <button class="filter-pill-btn" data-category="popular">Popular</button>
+          <button class="filter-pill-btn" data-category="creative">Creative</button>
+          <button class="filter-pill-btn" data-category="executive">Executive</button>
+          <button class="filter-pill-btn" data-category="student">Student / Fresher</button>
+          <button class="filter-pill-btn" data-category="minimal">Minimal</button>
+          <button class="filter-pill-btn" data-category="favorites"><i class="fa-solid fa-heart"></i> Favorites</button>
+        </div>
+
+        <div class="topbar-search" style="width: 250px;">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" class="form-control" placeholder="Search templates..." id="templateSearchInput">
+        </div>
+      </div>
+
+      <!-- Templates Cards Grid -->
+      <div class="template-cards-grid" id="templatesGrid">
+        <!-- Rendered dynamically by templates.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="templatesEmptyState" class="empty-state" style="display: none;">
+        <div class="empty-state-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <h4 class="empty-state-title">No Matching Templates</h4>
+        <p class="empty-state-desc">Try clearing your search term or switching to another category.</p>
+        <button class="btn btn-primary btn-sm" onclick="document.querySelector('.filter-pill-btn[data-category=\'all\']').click();">Reset Filters</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/templates.js"></script>
+</body>
+</html>

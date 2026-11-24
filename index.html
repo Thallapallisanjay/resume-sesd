@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Builder – Professional Resume Creator</title>
+  <meta name="description" content="Build professional, ATS-friendly resumes in minutes with live real-time preview, 10+ designer templates, and instant PDF download.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-file-invoice"></i>
+        </div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="templates.html" class="nav-link">Templates</a></li>
+        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+
+        <!-- User / Auth Buttons Group -->
+        <div class="auth-actions-group flex items-center gap-1">
+          <a href="login.html" class="btn btn-ghost btn-sm">Sign In</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Get Started Free</a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-bolt"></i>
+        <span>Trusted by 100,000+ job seekers worldwide</span>
+      </div>
+      <h1 class="hero-title">
+        Build a Standout, <span class="gradient-text">ATS-Friendly Resume</span> in Minutes
+      </h1>
+      <p class="hero-subtitle">
+        Craft modern, recruiter-approved resumes with our multi-step intuitive builder, real-time live preview, 10+ bespoke templates, and seamless one-click PDF export.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="resume-builder.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Create Resume Now
+        </a>
+        <a href="templates.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-layer-group"></i> Explore Templates
+        </a>
+      </div>
+
+      <!-- Quick Trust Stats -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h4>100K+</h4>
+          <p>Resumes Created</p>
+        </div>
+        <div class="stat-item">
+          <h4>98%</h4>
+          <p>ATS Pass Rate</p>
+        </div>
+        <div class="stat-item">
+          <h4>10+</h4>
+          <p>Handcrafted Templates</p>
+        </div>
+        <div class="stat-item">
+          <h4>4.9 / 5</h4>
+          <p>User Satisfaction</p>
+        </div>
+      </div>
+
+      <!-- Interactive Mockup Showcase -->
+      <div class="hero-mockup-wrapper">
+        <div class="hero-mockup-inner">
+          <div class="mockup-browser-bar">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+            <span class="browser-address">https://resumebuilder.app/builder</span>
+          </div>
+          <div class="hero-mockup-preview">
+            <div class="text-left">
+              <span class="section-badge"><i class="fa-solid fa-eye"></i> Real-Time Live Preview</span>
+              <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.75rem;">Instant visual feedback as you type</h3>
+              <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                No guessing games. Every change you make in personal details, experience, or skills renders live into pixel-perfect PDF format instantly.
+              </p>
+              <div class="flex gap-2">
+                <a href="resume-builder.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-nib"></i> Try Live Demo</a>
+                <a href="templates.html" class="btn btn-secondary btn-sm">See 10 Templates</a>
+              </div>
+            </div>
+            <div>
+              <div class="template-mini-paper" style="width: 240px; height: 320px; margin: 0 auto; box-shadow: var(--shadow-xl); font-size: 7px; padding: 16px;">
+                <div style="border-bottom: 2px solid #4f46e5; padding-bottom: 6px; margin-bottom: 10px;">
+                  <h3 style="font-size: 11px; font-weight: 800; color: #0f172a;">ALEX MORGAN</h3>
+                  <p style="color: #4f46e5; font-weight: 600; font-size: 8px;">Senior Full Stack Engineer</p>
+                  <p style="color: #64748b; font-size: 6px;">alex.morgan@example.com • +1 (555) 234-5678 • San Francisco, CA</p>
+                </div>
+                <div style="margin-bottom: 8px;">
+                  <h4 style="font-size: 8px; font-weight: 700; color: #4f46e5; text-transform: uppercase;">Professional Summary</h4>
+                  <p style="color: #334155; line-height: 1.4;">Results-driven engineer with 6+ years designing resilient cloud architectures and high-velocity web apps.</p>
+                </div>
+                <div style="margin-bottom: 8px;">
+                  <h4 style="font-size: 8px; font-weight: 700; color: #4f46e5; text-transform: uppercase;">Experience</h4>
+                  <p style="font-weight: 700; color: #0f172a;">Lead Engineer – CloudScale</p>
+                  <p style="color: #64748b;">• Scaled microservices handling 12M+ monthly active requests.</p>
+                  <p style="color: #64748b;">• Improved performance scores by 42%.</p>
+                </div>
+                <div>
+                  <h4 style="font-size: 8px; font-weight: 700; color: #4f46e5; text-transform: uppercase;">Core Skills</h4>
+                  <div style="display: flex; gap: 3px; flex-wrap: wrap;">
+                    <span style="background: #eef2ff; color: #4f46e5; padding: 1px 4px; border-radius: 2px;">React</span>
+                    <span style="background: #eef2ff; color: #4f46e5; padding: 1px 4px; border-radius: 2px;">Node.js</span>
+                    <span style="background: #eef2ff; color: #4f46e5; padding: 1px 4px; border-radius: 2px;">TypeScript</span>
+                    <span style="background: #eef2ff; color: #4f46e5; padding: 1px 4px; border-radius: 2px;">PostgreSQL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-sparkles"></i> Powerful Features</span>
+        <h2 class="section-title">Engineered to Help You Land Interviews</h2>
+        <p class="section-subtitle">Everything you need to craft high-impact, professional resumes that pass applicant tracking systems and impress hiring managers.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-check-double"></i></div>
+          <h3>100% ATS-Compliant</h3>
+          <p>Every layout follows standard semantic structures and typography, ensuring automated tracking systems parse your skills and experience without errors.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-desktop"></i></div>
+          <h3>Real-Time Live Preview</h3>
+          <p>Watch your resume adapt instantly with every keystroke. Switch templates, fonts, and accent colors with real-time visual feedback.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-palette"></i></div>
+          <h3>10 Designer Templates</h3>
+          <p>Choose from Modern, ATS, Creative, Executive, Minimal, Student, Elegant, Corporate, and Fresher designs tailored to your industry.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Privacy-First LocalStorage</h3>
+          <p>Your resume data is stored securely in your browser's LocalStorage. No third-party data tracking, 100% offline-ready and private.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <h3>One-Click PDF Export</h3>
+          <p>Export pixel-perfect, recruiter-ready A4 PDFs anytime. Clean print stylesheets ensure no awkward page breaks or clipped borders.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-list-check"></i></div>
+          <h3>10-Step Guided Wizard</h3>
+          <p>A step-by-step progress indicator guides you through personal info, summary, education, experience, skills, projects, and certifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Templates Preview Section -->
+  <section class="section" id="templates" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-layer-group"></i> Resume Templates</span>
+        <h2 class="section-title">Designed for Every Career Stage</h2>
+        <p class="section-subtitle">Pick from our library of 10 modern templates. Click any card to preview or jump straight into the builder.</p>
+      </div>
+
+      <div class="template-cards-grid">
+        <!-- Template Card 1 -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div style="background: #4f46e5; height: 6px; width: 100%; margin-bottom: 8px;"></div>
+              <p style="font-weight: 800; font-size: 8px;">MODERN TEMPLATE</p>
+              <p style="color: #64748b; font-size: 5px;">Two-column layout with sidebar and elegant accents.</p>
+              <div style="margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+                <p style="font-weight: 700; color: #4f46e5;">Experience</p>
+                <div style="height: 3px; background: #e2e8f0; margin: 3px 0; width: 90%;"></div>
+                <div style="height: 3px; background: #e2e8f0; margin: 3px 0; width: 75%;"></div>
+              </div>
+            </div>
+            <div class="template-card-overlay">
+              <a href="resume-builder.html?template=modern" class="btn btn-primary btn-sm">Use Template</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <div>
+              <div class="template-title">Modern</div>
+              <span class="template-tag">Popular</span>
+            </div>
+            <button class="fav-btn" data-template="modern" aria-label="Favorite"><i class="fa-solid fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Template Card 2 -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div style="text-align: center; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 6px;">
+                <p style="font-weight: 800; font-size: 8px;">ATS OPTIMIZED</p>
+                <p style="font-size: 5px;">Standard single-column high scoring layout.</p>
+              </div>
+              <p style="font-weight: 700; font-size: 6px; border-bottom: 1px solid #cbd5e1;">WORK EXPERIENCE</p>
+              <div style="height: 3px; background: #cbd5e1; margin: 3px 0; width: 100%;"></div>
+              <div style="height: 3px; background: #cbd5e1; margin: 3px 0; width: 85%;"></div>
+            </div>
+            <div class="template-card-overlay">
+              <a href="resume-builder.html?template=ats" class="btn btn-primary btn-sm">Use Template</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <div>
+              <div class="template-title">ATS Friendly</div>
+              <span class="template-tag">High Scoring</span>
+            </div>
+            <button class="fav-btn" data-template="ats" aria-label="Favorite"><i class="fa-solid fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Template Card 3 -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div style="background: #ec4899; color: #fff; padding: 6px; border-radius: 2px; margin-bottom: 8px;">
+                <p style="font-weight: 800; font-size: 7px;">CREATIVE</p>
+                <p style="font-size: 5px; opacity: 0.9;">Vibrant banner & portfolio showcase.</p>
+              </div>
+              <div style="display: flex; gap: 4px;">
+                <div style="width: 60%;"><div style="height: 3px; background: #fce7f3; margin-bottom: 3px;"></div></div>
+                <div style="width: 40%;"><div style="height: 3px; background: #e0e7ff;"></div></div>
+              </div>
+            </div>
+            <div class="template-card-overlay">
+              <a href="resume-builder.html?template=creative" class="btn btn-primary btn-sm">Use Template</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <div>
+              <div class="template-title">Creative</div>
+              <span class="template-tag">Designers</span>
+            </div>
+            <button class="fav-btn" data-template="creative" aria-label="Favorite"><i class="fa-solid fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Template Card 4 -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="font-family: Georgia, serif;">
+              <div style="border-bottom: 2px double #334155; padding-bottom: 4px; margin-bottom: 6px;">
+                <p style="font-weight: 700; font-size: 8px; color: #0f766e;">EXECUTIVE</p>
+                <p style="font-size: 5px; font-style: italic;">Leadership & milestone driven.</p>
+              </div>
+              <p style="font-size: 6px; font-weight: 700; color: #0f766e;">CAREER MILESTONES</p>
+              <div style="height: 3px; background: #ccfbf1; margin: 3px 0; width: 90%;"></div>
+            </div>
+            <div class="template-card-overlay">
+              <a href="resume-builder.html?template=executive" class="btn btn-primary btn-sm">Use Template</a>
+            </div>
+          </div>
+          <div class="template-info">
+            <div>
+              <div class="template-title">Executive</div>
+              <span class="template-tag">Leadership</span>
+            </div>
+            <button class="fav-btn" data-template="executive" aria-label="Favorite"><i class="fa-solid fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="templates.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-grid-2"></i> View All 10 Templates
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-comments"></i> Success Stories</span>
+        <h2 class="section-title">Loved by Thousands of Professionals</h2>
+        <p class="section-subtitle">Read how our resume builder has helped ambitious candidates secure roles at top-tier global companies.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="star-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "The ATS Friendly template is brilliant! I was struggling to get callbacks for months. Within 2 weeks of updating my resume here, I received 4 interview calls from top tech firms."
+            </p>
+          </div>
+          <div class="author-meta">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" alt="Sarah Jenkins" class="author-avatar">
+            <div>
+              <div class="author-name">Sarah Jenkins</div>
+              <div class="author-title">Senior Software Engineer at Stripe</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="star-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "The real-time split screen preview makes writing and structuring your resume effortless. The PDF export is crystal clear with no layout glitches."
+            </p>
+          </div>
+          <div class="author-meta">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="David Chen" class="author-avatar">
+            <div>
+              <div class="author-name">David Chen</div>
+              <div class="author-title">Lead Product Designer at Figma</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="star-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "I love that my data is saved locally on my device and I don't have to subscribe to expensive monthly fees. Best free resume tool on the web!"
+            </p>
+          </div>
+          <div class="author-meta">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" alt="Marcus Brody" class="author-avatar">
+            <div>
+              <div class="author-name">Marcus Brody</div>
+              <div class="author-title">Marketing Director at Techstars</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="section" id="faq" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="fa-solid fa-circle-question"></i> FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find quick answers to common questions about using Resume Builder.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>Is Resume Builder really 100% free to use?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Yes, this web application is completely free! You can create, edit, customize, duplicate, and download high-resolution PDF resumes with zero hidden subscriptions.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What makes a resume ATS-friendly?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Applicant Tracking Systems (ATS) scan resumes for standard headings, readable fonts, chronological work experience, and parseable skill keywords. Our ATS-friendly templates avoid confusing graphics and nested columns that break parsers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does LocalStorage protect my privacy?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Your personal information, career history, and resumes are saved strictly in your own browser's LocalStorage. No confidential credentials or resume content are uploaded to third-party tracking servers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I export and download my resume as a PDF?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Absolutely! Click the "Download PDF" button in the builder, and our custom print stylesheet formats the resume cleanly into an A4 page without headers, footers, or browser clutter.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I switch templates after filling in my info?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Yes! All your entered content stays intact when you switch between any of our 10 templates. You can preview your resume across different styles in real time with a single click.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Build Your Career-Defining Resume?</h2>
+        <p>Join thousands of professionals who have taken the next step in their career. Create your polished resume today in just 10 minutes.</p>
+        <a href="resume-builder.html" class="btn btn-cta">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Build My Resume Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+            <span>Resume<span>Builder</span></span>
+          </a>
+          <p>
+            The modern, privacy-first resume creation platform designed to help candidates craft winning resumes that get noticed by recruiters.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="templates.html">Resume Templates</a></li>
+            <li><a href="resume-builder.html">Resume Builder</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="my-resumes.html">My Resumes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Templates</h4>
+          <ul class="footer-links">
+            <li><a href="resume-builder.html?template=modern">Modern</a></li>
+            <li><a href="resume-builder.html?template=ats">ATS Friendly</a></li>
+            <li><a href="resume-builder.html?template=executive">Executive</a></li>
+            <li><a href="resume-builder.html?template=creative">Creative</a></li>
+            <li><a href="templates.html">All 10 Templates</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Create Account</a></li>
+            <li><a href="settings.html">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Resume Builder. All rights reserved. Crafted with HTML5, CSS3, & Vanilla JavaScript.</p>
+        <div class="flex gap-2">
+          <a href="#" class="text-muted">Privacy Policy</a>
+          <a href="#" class="text-muted">Terms of Service</a>
+          <a href="#" class="text-muted">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // FAQ Accordion Toggle Logic
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Favorite button clicks on landing page
+    document.querySelectorAll('.fav-btn').forEach(btn => {
+      const template = btn.getAttribute('data-template');
+      if (StorageManager.isFavorite(template)) {
+        btn.classList.add('active');
+      }
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        StorageManager.toggleFavorite(template);
+        btn.classList.toggle('active');
+        App.showToast(`Template ${template} ${btn.classList.contains('active') ? 'saved to' : 'removed from'} favorites`, 'info', 2000);
+      });
+    });
+  </script>
+</body>
+</html>

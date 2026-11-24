@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – Resume Builder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-layout">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-heading">Main Menu</li>
+        <li>
+          <a href="dashboard.html" class="sidebar-link active">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-resumes.html" class="sidebar-link">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Resumes</span>
+            <span class="sidebar-badge" id="statTotalResumesBadge">3</span>
+          </a>
+        </li>
+        <li>
+          <a href="resume-builder.html" class="sidebar-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="templates.html" class="sidebar-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Templates</span>
+          </a>
+        </li>
+
+        <li class="sidebar-nav-heading" style="margin-top: 1rem;">Preferences</li>
+        <li>
+          <a href="settings.html" class="sidebar-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-link theme-toggle-btn" id="sidebarThemeToggle">
+            <i class="fa-solid fa-moon theme-toggle-icon"></i>
+            <span class="theme-toggle-text">Dark Mode</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sidebar User Footer -->
+    <div class="sidebar-footer">
+      <div class="user-card-mini">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar-mini current-user-avatar">
+        <div class="user-info-mini">
+          <div class="user-name-mini current-user-name">Alex Morgan</div>
+          <div class="user-email-mini current-user-email">alex.morgan@example.com</div>
+        </div>
+        <button class="btn btn-ghost btn-icon logout-btn" title="Sign Out" style="color: var(--danger);">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="app-main">
+    <!-- Topbar Header -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h2 class="topbar-page-title">Dashboard Overview</h2>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Search bar -->
+        <div class="topbar-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" class="form-control" placeholder="Search resumes, templates..." id="topbarSearch">
+        </div>
+
+        <!-- Quick Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+
+        <!-- New Resume CTA -->
+        <a href="resume-builder.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-plus"></i> New Resume
+        </a>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="app-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h1>Welcome back, <span id="welcomeUserName">Alex</span>! 👋</h1>
+          <p>Your resumes are optimized for ATS algorithms. You can customize existing documents, choose a new design template, or export to PDF.</p>
+        </div>
+        <div class="welcome-actions">
+          <a href="resume-builder.html" class="btn btn-white">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Create New Resume
+          </a>
+          <a href="templates.html" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+            <i class="fa-solid fa-layer-group"></i> Browse Templates
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics / Stats Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon-box indigo">
+            <i class="fa-solid fa-file-invoice"></i>
+          </div>
+          <div class="metric-info">
+            <div class="metric-label">Total Resumes</div>
+            <div class="metric-value" id="statTotalResumes">3</div>
+            <div class="metric-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> Auto-saved locally</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-box sky">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="metric-info">
+            <div class="metric-label">Saved Templates</div>
+            <div class="metric-value" id="statFavoriteTemplates">3</div>
+            <div class="metric-trend trend-up"><i class="fa-solid fa-check"></i> Ready to use</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-box emerald">
+            <i class="fa-solid fa-download"></i>
+          </div>
+          <div class="metric-info">
+            <div class="metric-label">PDF Downloads</div>
+            <div class="metric-value" id="statTotalDownloads">18</div>
+            <div class="metric-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> High resolution</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon-box amber">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <div class="metric-info">
+            <div class="metric-label">Average ATS Score</div>
+            <div class="metric-value">92%</div>
+            <div class="metric-trend trend-up"><i class="fa-solid fa-shield-halved"></i> Top 5% ranking</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Two Column Grid -->
+      <div class="dashboard-grid-2">
+        <!-- Left Column: Recent Resumes & Quick Actions -->
+        <div>
+          <div class="content-box" style="margin-bottom: 2rem;">
+            <div class="content-box-header">
+              <h3 class="content-box-title"><i class="fa-solid fa-clock-rotate-left text-primary"></i> Recent Resumes</h3>
+              <a href="my-resumes.html" class="text-primary" style="font-size: 0.875rem; font-weight: 600;">View All Resumes &rarr;</a>
+            </div>
+
+            <div class="resumes-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Resume Title</th>
+                    <th>Template</th>
+                    <th>Last Modified</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="recentResumesTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+
+              <div id="recentResumesEmptyState" class="empty-state" style="display: none;">
+                <div class="empty-state-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
+                <h4 class="empty-state-title">No Resumes Found</h4>
+                <p class="empty-state-desc">You haven't created any resumes yet. Start building your first recruiter-approved resume now.</p>
+                <a href="resume-builder.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Resume</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions Grid -->
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title"><i class="fa-solid fa-bolt text-primary"></i> Quick Actions</h3>
+            </div>
+            <div class="content-box-body">
+              <div class="quick-actions-grid">
+                <a href="resume-builder.html?new=true" class="quick-action-btn">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  <span>New Resume</span>
+                </a>
+                <a href="templates.html" class="quick-action-btn">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span>Pick Template</span>
+                </a>
+                <a href="#" class="quick-action-btn" id="quickImportBtn">
+                  <i class="fa-solid fa-file-import"></i>
+                  <span>Import JSON</span>
+                </a>
+                <a href="settings.html" class="quick-action-btn">
+                  <i class="fa-solid fa-user-gear"></i>
+                  <span>Edit Profile</span>
+                </a>
+              </div>
+              <input type="file" id="quickImportInput" accept=".json" style="display: none;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Resume Progress & ATS Optimization -->
+        <div>
+          <!-- Progress Card -->
+          <div class="content-box" style="margin-bottom: 2rem;">
+            <div class="content-box-header">
+              <h3 class="content-box-title"><i class="fa-solid fa-chart-pie text-primary"></i> ATS Readiness</h3>
+            </div>
+            <div class="content-box-body">
+              <div class="progress-score-wrapper">
+                <div class="score-circle">
+                  <span class="score-number" id="atsScoreValue">92</span>
+                  <span class="score-total">/ 100</span>
+                </div>
+                <div class="score-status" id="atsScoreStatus">Excellent ATS Readiness!</div>
+                <p class="score-desc">Your resume incorporates strong action verbs, quantifiable achievements, and clear standard section headers.</p>
+              </div>
+
+              <!-- Checklist -->
+              <div style="margin-top: 1.5rem;" id="atsChecklist">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity / Download Tip Box -->
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="content-box-title"><i class="fa-solid fa-lightbulb text-primary"></i> Pro Tip</h3>
+            </div>
+            <div class="content-box-body">
+              <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                Tailor your resume for each specific job application by highlighting relevant keywords from the job description in your Skills and Summary sections.
+              </p>
+              <div style="margin-top: 1rem;">
+                <a href="resume-builder.html" class="btn btn-outline btn-sm" style="width: 100%;">
+                  <i class="fa-solid fa-pen-to-square"></i> Open Resume Builder
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

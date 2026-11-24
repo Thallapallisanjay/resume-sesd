@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings – Resume Builder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-layout">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-heading">Main Menu</li>
+        <li>
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-resumes.html" class="sidebar-link">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Resumes</span>
+          </a>
+        </li>
+        <li>
+          <a href="resume-builder.html" class="sidebar-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="templates.html" class="sidebar-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Templates</span>
+          </a>
+        </li>
+
+        <li class="sidebar-nav-heading" style="margin-top: 1rem;">Preferences</li>
+        <li>
+          <a href="settings.html" class="sidebar-link active">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-link theme-toggle-btn" id="sidebarThemeToggle">
+            <i class="fa-solid fa-moon theme-toggle-icon"></i>
+            <span class="theme-toggle-text">Dark Mode</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sidebar User Footer -->
+    <div class="sidebar-footer">
+      <div class="user-card-mini">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar-mini current-user-avatar">
+        <div class="user-info-mini">
+          <div class="user-name-mini current-user-name">Alex Morgan</div>
+          <div class="user-email-mini current-user-email">alex.morgan@example.com</div>
+        </div>
+        <button class="btn btn-ghost btn-icon logout-btn" title="Sign Out" style="color: var(--danger);">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="app-main">
+    <!-- Topbar Header -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h2 class="topbar-page-title">Account & Preferences Settings</h2>
+      </div>
+
+      <div class="topbar-right">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+        <a href="resume-builder.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Open Builder
+        </a>
+      </div>
+    </header>
+
+    <!-- Settings Content -->
+    <div class="app-content" style="max-width: 900px;">
+
+      <!-- Settings Navigation Tabs -->
+      <div class="settings-tabs-nav">
+        <button class="settings-tab-btn active" data-target="tabProfile">
+          <i class="fa-regular fa-user"></i> Profile Info
+        </button>
+        <button class="settings-tab-btn" data-target="tabAppearance">
+          <i class="fa-solid fa-palette"></i> Appearance & Theme
+        </button>
+        <button class="settings-tab-btn" data-target="tabSecurity">
+          <i class="fa-solid fa-shield-halved"></i> Security & Password
+        </button>
+        <button class="settings-tab-btn" data-target="tabBackup">
+          <i class="fa-solid fa-database"></i> Data Backup & Restore
+        </button>
+      </div>
+
+      <!-- Tab 1: Profile Information -->
+      <div class="settings-tab-pane active" id="tabProfile">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="content-box-title">Personal Profile Details</h3>
+          </div>
+          <div class="content-box-body">
+
+            <!-- Avatar Uploader -->
+            <div class="avatar-upload-wrapper">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Avatar" id="settingsAvatarImg" class="settings-avatar-preview">
+              <div class="avatar-upload-actions">
+                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">Profile Photo</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">JPG, GIF or PNG. Max size 2MB.</p>
+                <div class="flex gap-1">
+                  <button type="button" class="btn btn-outline btn-sm" id="uploadAvatarTrigger">
+                    <i class="fa-solid fa-upload"></i> Upload New
+                  </button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="removeAvatarBtn" style="color: var(--danger);">
+                    Remove
+                  </button>
+                </div>
+                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+              </div>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profileSettingsForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="settingsFullName" class="form-label">Full Name</label>
+                  <input type="text" id="settingsFullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="settingsEmail" class="form-label">Email Address</label>
+                  <input type="email" id="settingsEmail" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="settingsJobTitle" class="form-label">Professional Title</label>
+                  <input type="text" id="settingsJobTitle" class="form-control" placeholder="e.g. Senior Software Engineer">
+                </div>
+                <div class="form-group">
+                  <label for="settingsPhone" class="form-label">Phone Number</label>
+                  <input type="tel" id="settingsPhone" class="form-control" placeholder="+1 (555) 000-0000">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="settingsLocation" class="form-label">City, Country</label>
+                <input type="text" id="settingsLocation" class="form-control" placeholder="San Francisco, CA, USA">
+              </div>
+
+              <div class="form-group">
+                <label for="settingsBio" class="form-label">Professional Bio / Elevator Pitch</label>
+                <textarea id="settingsBio" class="form-control" rows="3" placeholder="Brief statement about your career background..."></textarea>
+              </div>
+
+              <div class="flex justify-between items-center" style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+                <button type="button" class="btn btn-outline" id="resetProfileBtn">Reset Changes</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Appearance & Theme -->
+      <div class="settings-tab-pane" id="tabAppearance">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="content-box-title">Display & Color Preferences</h3>
+          </div>
+          <div class="content-box-body">
+            <div class="form-group" style="max-width: 400px; margin-bottom: 2rem;">
+              <label for="settingsThemeSelect" class="form-label">Theme Mode</label>
+              <select id="settingsThemeSelect" class="form-control">
+                <option value="light">Light Mode</option>
+                <option value="dark">Dark Mode</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label class="form-label">Primary Brand Accent Color</label>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Select your preferred accent color for buttons, badges, and headers across the application.
+              </p>
+              <div class="color-picker-group">
+                <div class="color-swatch active" data-color="#4f46e5" style="background: #4f46e5;" title="Indigo"></div>
+                <div class="color-swatch" data-color="#0284c7" style="background: #0284c7;" title="Sky Blue"></div>
+                <div class="color-swatch" data-color="#10b981" style="background: #10b981;" title="Emerald"></div>
+                <div class="color-swatch" data-color="#ec4899" style="background: #ec4899;" title="Pink"></div>
+                <div class="color-swatch" data-color="#d97706" style="background: #d97706;" title="Amber"></div>
+                <div class="color-swatch" data-color="#7c3aed" style="background: #7c3aed;" title="Violet"></div>
+                <div class="color-swatch" data-color="#0f172a" style="background: #0f172a;" title="Slate"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Security & Password -->
+      <div class="settings-tab-pane" id="tabSecurity">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="content-box-title">Change Password</h3>
+          </div>
+          <div class="content-box-body" style="max-width: 500px;">
+            <form id="securitySettingsForm">
+              <div class="form-group">
+                <label for="currentPassword" class="form-label">Current Password</label>
+                <input type="password" id="currentPassword" class="form-control" required placeholder="••••••••">
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Default demo password: Password123</small>
+              </div>
+
+              <div class="form-group">
+                <label for="newPassword" class="form-label">New Password</label>
+                <input type="password" id="newPassword" class="form-control" required placeholder="Minimum 8 characters">
+              </div>
+
+              <div class="form-group">
+                <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" class="form-control" required placeholder="Re-enter new password">
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+                <i class="fa-solid fa-lock"></i> Update Password
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Data Backup & Restore -->
+      <div class="settings-tab-pane" id="tabBackup">
+        <div class="content-box">
+          <div class="content-box-header">
+            <h3 class="content-box-title">Data Backup, Export & Restore</h3>
+          </div>
+          <div class="content-box-body">
+            <p style="font-size: 0.925rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+              Because Resume Builder stores your resumes in browser LocalStorage, you can download a full JSON backup of all your resumes, templates, and settings to transfer to another device or browser.
+            </p>
+
+            <div class="flex gap-2" style="flex-wrap: wrap; margin-bottom: 2.5rem;">
+              <button class="btn btn-primary" id="exportDataBtn">
+                <i class="fa-solid fa-download"></i> Export All Data as JSON
+              </button>
+              <button class="btn btn-outline" id="importBackupBtn">
+                <i class="fa-solid fa-upload"></i> Restore from JSON Backup
+              </button>
+              <input type="file" id="importBackupInput" accept=".json" style="display: none;">
+            </div>
+
+            <!-- Danger Zone -->
+            <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+              <h4 style="color: var(--danger); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Danger Zone
+              </h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                Reset all application data back to default factory settings. This will wipe any custom resumes you created.
+              </p>
+              <button class="btn btn-danger btn-sm" id="factoryResetBtn">
+                <i class="fa-solid fa-rotate-left"></i> Reset Everything to Defaults
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

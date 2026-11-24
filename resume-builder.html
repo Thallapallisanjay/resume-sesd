@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Builder – Multi-Step Professional Resume Creator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/resume.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="site-header" style="height: 72px;">
+    <div class="container navbar" style="height: 100%;">
+      <div class="flex items-center gap-2">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+          <span>Resume<span>Builder</span></span>
+        </a>
+
+        <!-- Document Editable Title -->
+        <div class="flex items-center gap-1" style="margin-left: 1rem;">
+          <input type="text" id="resumeDocTitle" value="My Professional Resume" style="background: transparent; border: 1px solid transparent; font-size: 1rem; font-weight: 700; color: var(--text-main); padding: 0.35rem 0.65rem; border-radius: var(--radius-sm); width: 220px;" title="Click to rename resume">
+          <span id="autoSaveBadge" class="step-save-badge">
+            <i class="fa-solid fa-circle-check"></i> All changes saved
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">
+          <i class="fa-solid fa-arrow-left"></i> Dashboard
+        </a>
+        <button class="btn btn-outline btn-sm" id="saveResumeBtn">
+          <i class="fa-solid fa-floppy-disk"></i> Save
+        </button>
+        <button class="btn btn-primary btn-sm" id="printPdfBtn">
+          <i class="fa-solid fa-download"></i> Download PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile View Switcher (Only visible on small devices) -->
+  <div class="mobile-builder-switcher" id="mobileNavToggleBar">
+    <button type="button" class="mobile-tab-btn active" id="mobileEditTabBtn">
+      <i class="fa-solid fa-pen-to-square"></i> Edit Form
+    </button>
+    <button type="button" class="mobile-tab-btn" id="mobilePreviewTabBtn">
+      <i class="fa-solid fa-eye"></i> Live Preview
+    </button>
+  </div>
+
+  <!-- Main Split-Screen Builder Container -->
+  <div class="builder-layout">
+
+    <!-- LEFT PANE: MULTI-STEP FORM WIZARD -->
+    <div class="builder-editor-pane">
+
+      <!-- Step Wizard Progress Indicator (10 Steps) -->
+      <div class="wizard-progress-bar">
+        <div class="wizard-step-node active" data-step="1">
+          <div class="step-node-bubble"><i class="fa-solid fa-user"></i></div>
+          <span class="step-node-label">1. Personal</span>
+        </div>
+        <div class="wizard-step-node" data-step="2">
+          <div class="step-node-bubble"><i class="fa-solid fa-align-left"></i></div>
+          <span class="step-node-label">2. Summary</span>
+        </div>
+        <div class="wizard-step-node" data-step="3">
+          <div class="step-node-bubble"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span class="step-node-label">3. Education</span>
+        </div>
+        <div class="wizard-step-node" data-step="4">
+          <div class="step-node-bubble"><i class="fa-solid fa-briefcase"></i></div>
+          <span class="step-node-label">4. Experience</span>
+        </div>
+        <div class="wizard-step-node" data-step="5">
+          <div class="step-node-bubble"><i class="fa-solid fa-bolt"></i></div>
+          <span class="step-node-label">5. Skills</span>
+        </div>
+        <div class="wizard-step-node" data-step="6">
+          <div class="step-node-bubble"><i class="fa-solid fa-code"></i></div>
+          <span class="step-node-label">6. Projects</span>
+        </div>
+        <div class="wizard-step-node" data-step="7">
+          <div class="step-node-bubble"><i class="fa-solid fa-award"></i></div>
+          <span class="step-node-label">7. Certs</span>
+        </div>
+        <div class="wizard-step-node" data-step="8">
+          <div class="step-node-bubble"><i class="fa-solid fa-language"></i></div>
+          <span class="step-node-label">8. Languages</span>
+        </div>
+        <div class="wizard-step-node" data-step="9">
+          <div class="step-node-bubble"><i class="fa-solid fa-heart"></i></div>
+          <span class="step-node-label">9. Interests</span>
+        </div>
+        <div class="wizard-step-node" data-step="10">
+          <div class="step-node-bubble"><i class="fa-solid fa-eye"></i></div>
+          <span class="step-node-label">10. Preview</span>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- STEP 1: PERSONAL INFORMATION -->
+      <!-- ================================================================= -->
+      <section class="step-content-section active" data-step="1">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Personal Information</h2>
+            <p class="step-desc">Enter your contact details so recruiters can reach you easily.</p>
+          </div>
+        </div>
+
+        <!-- Photo Upload Box -->
+        <div class="photo-upload-container">
+          <img src="" alt="Profile Photo" id="personalPhotoPreview" class="photo-preview-box">
+          <div class="photo-upload-info">
+            <h4>Profile Headshot</h4>
+            <p>Recommended: Professional square photo, max 2MB (optional).</p>
+            <div class="flex gap-1">
+              <button type="button" class="btn btn-outline btn-sm" id="uploadPhotoBtn">
+                <i class="fa-solid fa-upload"></i> Upload Photo
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" id="removePhotoBtn" style="color: var(--danger);">
+                Remove
+              </button>
+            </div>
+            <input type="file" id="photoFileInput" accept="image/*" style="display: none;">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="personalFullName" class="form-label">Full Name *</label>
+            <input type="text" id="personalFullName" class="form-control" placeholder="e.g. Alex Morgan" required>
+          </div>
+          <div class="form-group">
+            <label for="personalJobTitle" class="form-label">Target Job Title *</label>
+            <input type="text" id="personalJobTitle" class="form-control" placeholder="e.g. Senior Full Stack Engineer" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="personalEmail" class="form-label">Email Address *</label>
+            <input type="email" id="personalEmail" class="form-control" placeholder="alex.morgan@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="personalPhone" class="form-label">Phone Number *</label>
+            <input type="tel" id="personalPhone" class="form-control" placeholder="+1 (555) 234-5678">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="personalAddress" class="form-label">Location (City, State, Country)</label>
+          <input type="text" id="personalAddress" class="form-control" placeholder="e.g. San Francisco, CA, USA">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="personalLinkedin" class="form-label">LinkedIn Profile URL</label>
+            <input type="text" id="personalLinkedin" class="form-control" placeholder="linkedin.com/in/username">
+          </div>
+          <div class="form-group">
+            <label for="personalGithub" class="form-label">GitHub Profile URL</label>
+            <input type="text" id="personalGithub" class="form-control" placeholder="github.com/username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="personalPortfolio" class="form-label">Personal Portfolio / Website</label>
+          <input type="text" id="personalPortfolio" class="form-control" placeholder="e.g. alexmorgan.dev">
+        </div>
+
+        <div class="wizard-actions">
+          <span></span>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Professional Summary <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 2: PROFESSIONAL SUMMARY -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="2">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Professional Summary</h2>
+            <p class="step-desc">Write a concise 2-4 sentence elevator pitch emphasizing your expertise, top skills, and impact.</p>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="aiSummarySuggestBtn">
+            <i class="fa-solid fa-wand-magic-sparkles text-primary"></i> AI Suggestion
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="personalSummary" class="form-label">Executive / Career Summary</label>
+          <textarea id="personalSummary" class="form-control" rows="6" placeholder="Results-oriented engineer with 6+ years of experience designing scalable systems..."></textarea>
+          <div class="char-counter" id="summaryCharCount">0 / 600 characters</div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Education <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 3: EDUCATION -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="3">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Education</h2>
+            <p class="step-desc">List your degrees, universities, academic achievements, and graduation years.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addEducationBtn">
+            <i class="fa-solid fa-plus"></i> Add Education
+          </button>
+        </div>
+
+        <div class="repeater-card-list" id="educationRepeaterList">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Experience <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 4: EXPERIENCE -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="4">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Work Experience</h2>
+            <p class="step-desc">Highlight your career history, roles, and measurable contributions with action verbs.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addExperienceBtn">
+            <i class="fa-solid fa-plus"></i> Add Experience
+          </button>
+        </div>
+
+        <div class="repeater-card-list" id="experienceRepeaterList">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Skills <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 5: SKILLS -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="5">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Core Skills</h2>
+            <p class="step-desc">Add your technical competencies, tools, frameworks, and soft skills.</p>
+          </div>
+        </div>
+
+        <!-- Add Skill Row -->
+        <div class="glass-card" style="padding: 1.25rem; margin-bottom: 1.5rem;">
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="newSkillNameInput" class="form-label">Skill Name</label>
+              <input type="text" id="newSkillNameInput" class="form-control" placeholder="e.g. React, Python, PostgreSQL, Team Leadership">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="newSkillLevelSelect" class="form-label">Proficiency Level</label>
+              <div class="flex gap-1">
+                <select id="newSkillLevelSelect" class="form-control">
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate" selected>Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                  <option value="Expert">Expert</option>
+                </select>
+                <button type="button" class="btn btn-primary" id="addSkillBtn">
+                  <i class="fa-solid fa-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Suggestion Pills -->
+          <div style="margin-top: 1rem;">
+            <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">Popular suggestions (click to add):</span>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.35rem;">
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="TypeScript">+ TypeScript</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="React.js">+ React.js</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="Node.js">+ Node.js</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="Python">+ Python</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="AWS Cloud">+ AWS Cloud</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="Docker">+ Docker</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="PostgreSQL">+ PostgreSQL</button>
+              <button type="button" class="filter-pill-btn skill-pill-suggest" data-skill="Agile / Scrum">+ Agile / Scrum</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rendered Skills Badges -->
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem;">Your Skill List</h4>
+          <div id="skillsBadgeContainer" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Projects <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 6: PROJECTS -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="6">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Key Projects</h2>
+            <p class="step-desc">Showcase notable applications, products, or open source contributions.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addProjectBtn">
+            <i class="fa-solid fa-plus"></i> Add Project
+          </button>
+        </div>
+
+        <div class="repeater-card-list" id="projectsRepeaterList">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Certifications <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 7: CERTIFICATIONS -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="7">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Certifications & Licenses</h2>
+            <p class="step-desc">Add relevant industry certifications, awards, or recognized training programs.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addCertBtn">
+            <i class="fa-solid fa-plus"></i> Add Certification
+          </button>
+        </div>
+
+        <div class="repeater-card-list" id="certificationsRepeaterList">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Languages <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 8: LANGUAGES -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="8">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Languages</h2>
+            <p class="step-desc">List languages you speak and your proficiency level.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addLangBtn">
+            <i class="fa-solid fa-plus"></i> Add Language
+          </button>
+        </div>
+
+        <div id="languagesRepeaterList" style="margin-bottom: 1.5rem;">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Next: Interests <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 9: INTERESTS -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="9">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Interests & Hobbies</h2>
+            <p class="step-desc">Share personal interests or volunteering that reflect your personality.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-1" style="margin-bottom: 1.5rem;">
+          <input type="text" id="interestInput" class="form-control" placeholder="e.g. Open Source, Marathons, UI Design, Chess">
+          <button type="button" class="btn btn-primary" id="addInterestBtn">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+
+        <div id="interestsBadgeContainer" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary next-step-btn">
+            Final Step: Preview & Export <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- STEP 10: RESUME PREVIEW & EXPORT -->
+      <!-- ================================================================= -->
+      <section class="step-content-section" data-step="10">
+        <div class="step-header">
+          <div>
+            <h2 class="step-title">Resume Preview & Customization</h2>
+            <p class="step-desc">Review your complete formatted resume, tweak styles, and download as PDF.</p>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem;">Export & Sharing Options</h4>
+          <div class="flex gap-1" style="flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary btn-lg" onclick="document.getElementById('printPdfBtn').click();">
+              <i class="fa-solid fa-file-pdf"></i> Download PDF
+            </button>
+            <button type="button" class="btn btn-outline" id="exportJsonBtn">
+              <i class="fa-solid fa-file-code"></i> Export JSON
+            </button>
+            <a href="dashboard.html" class="btn btn-secondary">
+              <i class="fa-solid fa-check"></i> Finished / Return to Dashboard
+            </a>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline prev-step-btn">
+            <i class="fa-solid fa-arrow-left"></i> Previous Step
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT PANE: STICKY LIVE RESUME PREVIEW -->
+    <div class="builder-preview-pane">
+
+      <!-- Preview Toolbar -->
+      <div class="preview-toolbar">
+        <!-- Template Picker -->
+        <div class="toolbar-group">
+          <label for="toolbarTemplateSelect" style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);">Template:</label>
+          <select id="toolbarTemplateSelect" class="toolbar-select">
+            <option value="modern">Modern (2-Column)</option>
+            <option value="ats">ATS Friendly (1-Column)</option>
+            <option value="creative">Creative (Bold Header)</option>
+            <option value="executive">Executive (Serif Leadership)</option>
+            <option value="student">Student (Academic)</option>
+            <option value="minimal">Minimal (Clean Monochrome)</option>
+            <option value="elegant">Elegant (Gold & Navy)</option>
+            <option value="professional">Professional (Corporate)</option>
+            <option value="corporate">Corporate (KPI Blocks)</option>
+            <option value="fresher">Fresher (Skills First)</option>
+          </select>
+        </div>
+
+        <!-- Font Picker -->
+        <div class="toolbar-group">
+          <label for="toolbarFontSelect" style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted);">Font:</label>
+          <select id="toolbarFontSelect" class="toolbar-select">
+            <option value="Inter">Inter (Sans-serif)</option>
+            <option value="Plus Jakarta Sans">Jakarta (Modern)</option>
+            <option value="Merriweather">Merriweather (Serif)</option>
+            <option value="Arial">Arial (Clean ATS)</option>
+          </select>
+        </div>
+
+        <!-- Color Picker Swatches -->
+        <div class="toolbar-group">
+          <div class="color-picker-inline">
+            <div class="color-dot active" data-color="#4f46e5" style="background: #4f46e5;" title="Indigo"></div>
+            <div class="color-dot" data-color="#0284c7" style="background: #0284c7;" title="Sky"></div>
+            <div class="color-dot" data-color="#10b981" style="background: #10b981;" title="Emerald"></div>
+            <div class="color-dot" data-color="#ec4899" style="background: #ec4899;" title="Pink"></div>
+            <div class="color-dot" data-color="#d97706" style="background: #d97706;" title="Amber"></div>
+            <div class="color-dot" data-color="#0f766e" style="background: #0f766e;" title="Teal"></div>
+            <div class="color-dot" data-color="#0f172a" style="background: #0f172a;" title="Slate"></div>
+          </div>
+        </div>
+
+        <!-- Zoom Controls -->
+        <div class="toolbar-group">
+          <button class="btn btn-secondary btn-icon" id="zoomOutBtn" title="Zoom Out" style="width: 32px; height: 32px;"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+          <span id="zoomLevelDisplay" style="font-size: 0.8rem; font-weight: 700; min-width: 40px; text-align: center;">100%</span>
+          <button class="btn btn-secondary btn-icon" id="zoomInBtn" title="Zoom In" style="width: 32px; height: 32px;"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="btn btn-secondary btn-icon" id="zoomResetBtn" title="Reset Zoom" style="width: 32px; height: 32px;"><i class="fa-solid fa-arrows-rotate"></i></button>
+        </div>
+      </div>
+
+      <!-- Live Resume Viewport / Canvas -->
+      <div class="preview-viewport">
+        <!-- The A4 Sheet Paper Container -->
+        <div class="resume-paper template-modern" id="liveResumePaper">
+          <!-- Rendered live via JavaScript -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/resume.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Resumes – Resume Builder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app-layout">
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon"><i class="fa-solid fa-file-invoice"></i></div>
+        <span>Resume<span>Builder</span></span>
+      </a>
+      <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">&times;</button>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-heading">Main Menu</li>
+        <li>
+          <a href="dashboard.html" class="sidebar-link">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="my-resumes.html" class="sidebar-link active">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Resumes</span>
+          </a>
+        </li>
+        <li>
+          <a href="resume-builder.html" class="sidebar-link">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Resume Builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="templates.html" class="sidebar-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Templates</span>
+          </a>
+        </li>
+
+        <li class="sidebar-nav-heading" style="margin-top: 1rem;">Preferences</li>
+        <li>
+          <a href="settings.html" class="sidebar-link">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidebar-link theme-toggle-btn" id="sidebarThemeToggle">
+            <i class="fa-solid fa-moon theme-toggle-icon"></i>
+            <span class="theme-toggle-text">Dark Mode</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sidebar User Footer -->
+    <div class="sidebar-footer">
+      <div class="user-card-mini">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar-mini current-user-avatar">
+        <div class="user-info-mini">
+          <div class="user-name-mini current-user-name">Alex Morgan</div>
+          <div class="user-email-mini current-user-email">alex.morgan@example.com</div>
+        </div>
+        <button class="btn btn-ghost btn-icon logout-btn" title="Sign Out" style="color: var(--danger);">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="app-main">
+    <!-- Topbar Header -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h2 class="topbar-page-title">My Resumes Collection</h2>
+      </div>
+
+      <div class="topbar-right">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Theme">
+          <i class="fa-solid fa-moon theme-toggle-icon" id="themeIcon"></i>
+        </button>
+        <a href="resume-builder.html?new=true" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-plus"></i> Create New Resume
+        </a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="app-content">
+
+      <!-- Header & Action Row -->
+      <div class="flex justify-between items-center" style="margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">My Resumes</h1>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Manage, duplicate, edit and download your saved resumes. <span id="resumesCountBadge" class="sidebar-badge" style="background: var(--primary-light); color: var(--primary); font-weight: 700; margin-left: 0.5rem;"></span>
+          </p>
+        </div>
+
+        <div class="flex gap-1" style="flex-wrap: wrap;">
+          <a href="resume-builder.html?new=true" class="btn btn-primary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> New Resume
+          </a>
+        </div>
+      </div>
+
+      <!-- Search, Sort & Filter Toolbar -->
+      <div class="glass-card" style="padding: 1rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <!-- Search -->
+        <div class="input-with-icon" style="flex: 1; min-width: 240px;">
+          <i class="fa-solid fa-magnifying-glass input-icon"></i>
+          <input type="text" id="searchResumesInput" class="form-control" placeholder="Search by title, role or skills...">
+        </div>
+
+        <!-- Filter Template -->
+        <div class="flex items-center gap-1">
+          <label for="filterTemplateSelect" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); white-space: nowrap;">Template:</label>
+          <select id="filterTemplateSelect" class="form-control" style="width: auto; min-width: 140px; padding: 0.5rem 0.75rem; font-size: 0.85rem;">
+            <option value="all">All Templates</option>
+            <option value="modern">Modern</option>
+            <option value="ats">ATS Friendly</option>
+            <option value="creative">Creative</option>
+            <option value="executive">Executive</option>
+            <option value="student">Student</option>
+            <option value="minimal">Minimal</option>
+          </select>
+        </div>
+
+        <!-- Sort -->
+        <div class="flex items-center gap-1">
+          <label for="sortResumesSelect" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); white-space: nowrap;">Sort by:</label>
+          <select id="sortResumesSelect" class="form-control" style="width: auto; min-width: 160px; padding: 0.5rem 0.75rem; font-size: 0.85rem;">
+            <option value="updated-desc">Recently Modified</option>
+            <option value="updated-asc">Oldest Modified</option>
+            <option value="title-asc">Title (A - Z)</option>
+            <option value="title-desc">Title (Z - A)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Resumes Cards Grid -->
+      <div class="resumes-grid" id="myResumesGrid">
+        <!-- Rendered by js/my-resumes.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="myResumesEmptyState" class="empty-state" style="display: none;">
+        <div class="empty-state-icon"><i class="fa-solid fa-folder-open"></i></div>
+        <h4 class="empty-state-title">No Resumes Found</h4>
+        <p class="empty-state-desc">No resumes matched your search criteria. Create a new resume or clear your filters.</p>
+        <a href="resume-builder.html?new=true" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create New Resume</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/my-resumes.js"></script>
+</body>
+</html>
